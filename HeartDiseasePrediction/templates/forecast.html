@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Forecasting</h2>
+<p>Population-level forecasting for future heart disease prevalence and age-group projections.</p>
+<section class="chart-grid">
+  <div class="chart-card">{{ forecast_html | safe }}</div>
+  <div class="chart-card">{{ age_html | safe }}</div>
+</section>
+
+<section class="result-card">
+  <h3>Forecast Summary</h3>
+  <div class="stat-row">
+    {% for year, value in zip(years, values) %}
+      <div class="metric-card"><span>{{ year }}</span><strong>{{ value }}%</strong></div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

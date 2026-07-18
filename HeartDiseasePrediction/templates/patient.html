@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Patient Management</h2>
+<form class="form-inline" method="get">
+  <label>Search patients
+    <input type="search" name="search" placeholder="Name, age, BP, cholesterol..." value="{{ search_query }}" />
+  </label>
+</form>
+<div class="table-wrapper">{{ table_html | safe }}</div>
+{% endblock %}

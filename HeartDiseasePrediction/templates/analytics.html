@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Analytics</h2>
+<div class="chart-grid">
+  <div class="chart-card">{{ disease_html | safe }}</div>
+  <div class="chart-card">{{ age_html | safe }}</div>
+  <div class="chart-card">{{ gender_html | safe }}</div>
+  <div class="chart-card">{{ cholesterol_html | safe }}</div>
+  <div class="chart-card">{{ bp_html | safe }}</div>
+</div>
+{% endblock %}

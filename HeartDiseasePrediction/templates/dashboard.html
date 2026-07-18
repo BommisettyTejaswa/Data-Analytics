@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+<div class="metric-row">
+  <div class="metric-card"><span>Total Patients</span><strong>{{ dataset_rows }}</strong></div>
+  <div class="metric-card"><span>Heart Disease Rate</span><strong>{{ disease_rate }}</strong></div>
+  <div class="metric-card"><span>Average Age</span><strong>{{ average_age }}</strong></div>
+  <div class="metric-card"><span>Average BP</span><strong>{{ average_bp }}</strong></div>
+  <div class="metric-card"><span>Average Cholesterol</span><strong>{{ average_chol }}</strong></div>
+</div>
+
+<div class="split-panel">
+  <section class="section-card">{{ forecast_html | safe }}</section>
+  <section class="section-card">{{ age_html | safe }}</section>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }} | Heart Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <script src="https://cdn.plot.ly/plotly-2.36.0.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="page-title">
+        <span class="page-icon">❤️</span>
+        <div>
+          <h1>Heart Disease Prediction</h1>
+          <p>AI-powered cardiovascular risk forecasting with a modern web interface.</p>
+        </div>
+      </div>
+      <nav class="nav-menu">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('patients') }}">Patients</a>
+        <a href="{{ url_for('predict') }}">Predict</a>
+        <a href="{{ url_for('forecast') }}">Forecast</a>
+        <a href="{{ url_for('analytics') }}">Analytics</a>
+        <a href="{{ url_for('reports') }}">Reports</a>
+        <a href="{{ url_for('settings') }}">Settings</a>
+      </nav>
+    </header>
+
+    <main class="content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-container">
+            {% for category, message in messages %}
+              <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <p>Built with Flask, Pandas, Scikit-learn, Plotly, and ReportLab.</p>
+      <p>Data source: dataset/heart.csv</p>
+    </footer>
+  </body>
+</html>

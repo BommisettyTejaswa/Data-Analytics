@@ -1,0 +1,92 @@
+{
+  "dataset_shape": [
+    918,
+    12
+  ],
+  "best_model": "Random Forest",
+  "best_accuracy": 0.9022,
+  "results": [
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.8859,
+      "precision": 0.8716,
+      "recall": 0.9314,
+      "f1_score": 0.9005,
+      "roc_auc": 0.9299
+    },
+    {
+      "model": "Decision Tree",
+      "accuracy": 0.7935,
+      "precision": 0.8137,
+      "recall": 0.8137,
+      "f1_score": 0.8137,
+      "roc_auc": 0.791
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.9022,
+      "precision": 0.8962,
+      "recall": 0.9314,
+      "f1_score": 0.9135,
+      "roc_auc": 0.9324
+    },
+    {
+      "model": "SVM",
+      "accuracy": 0.8967,
+      "precision": 0.8879,
+      "recall": 0.9314,
+      "f1_score": 0.9091,
+      "roc_auc": 0.9494
+    },
+    {
+      "model": "XGBoost",
+      "accuracy": 0.8804,
+      "precision": 0.9082,
+      "recall": 0.8725,
+      "f1_score": 0.89,
+      "roc_auc": 0.9347
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "ST_Slope_Up",
+      "importance": 0.1579
+    },
+    {
+      "feature": "Oldpeak",
+      "importance": 0.1018
+    },
+    {
+      "feature": "ST_Slope_Flat",
+      "importance": 0.0972
+    },
+    {
+      "feature": "Cholesterol",
+      "importance": 0.0924
+    },
+    {
+      "feature": "MaxHR",
+      "importance": 0.0915
+    },
+    {
+      "feature": "ChestPainType_ASY",
+      "importance": 0.0902
+    },
+    {
+      "feature": "Age",
+      "importance": 0.0706
+    },
+    {
+      "feature": "RestingBP",
+      "importance": 0.0652
+    },
+    {
+      "feature": "ExerciseAngina_Y",
+      "importance": 0.0497
+    },
+    {
+      "feature": "ExerciseAngina_N",
+      "importance": 0.0496
+    }
+  ]
+}

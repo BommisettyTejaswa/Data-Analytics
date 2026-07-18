@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dataset Overview</h2>
+<div class="metric-row">
+  <div class="metric-card"><span>Rows</span><strong>{{ rows }}</strong></div>
+  <div class="metric-card"><span>Columns</span><strong>{{ columns }}</strong></div>
+  <div class="metric-card"><span>Missing Values</span><strong>{{ missing_values }}</strong></div>
+  <div class="metric-card"><span>Duplicates</span><strong>{{ duplicates }}</strong></div>
+</div>
+
+<section class="split-panel">
+  <div>
+    <h3>Dataset Preview</h3>
+    <div class="table-wrapper">{{ preview_html | safe }}</div>
+  </div>
+  <div>
+    <h3>Dataset Summary</h3>
+    <div class="table-wrapper">{{ description_html | safe }}</div>
+    <h3>Data Types</h3>
+    <div class="table-wrapper">{{ dtypes_html | safe }}</div>
+  </div>
+</section>
+
+<section class="chart-grid">
+  <div class="chart-card">{{ chart_heart | safe }}</div>
+  <div class="chart-card">{{ chart_gender | safe }}</div>
+  <div class="chart-card">{{ chart_age | safe }}</div>
+</section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero-card">
+  <div>
+    <h2>Heart Disease Prediction System</h2>
+    <p>Explore the dataset, train models, and predict cardiovascular risk using a clean HTML/CSS dashboard.</p>
+    <a class="button" href="{{ url_for('predict') }}">Make a Prediction</a>
+  </div>
+  <div class="hero-metrics">
+    <div class="stat-card">
+      <h3>Patients</h3>
+      <p>{{ dataset_rows }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Features</h3>
+      <p>{{ feature_count }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Accuracy</h3>
+      <p>{{ accuracy }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Heart Disease Cases</h3>
+      <p>{{ heart_disease_count }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="overview-grid">
+  <article>
+    <h2>Latest Model</h2>
+    {% if best_model %}
+      <p class="highlight">Best model: {{ best_model }}</p>
+    {% else %}
+      <p class="muted">No trained model available yet. Train the model to enable predictions.</p>
+    {% endif %}
+  </article>
+
+  <article>
+    <h2>Project Description</h2>
+    <p>This web application supports dataset exploration, model training, risk prediction, and exportable reports for cardiovascular analysis.</p>
+  </article>
+</section>
+{% endblock %}
