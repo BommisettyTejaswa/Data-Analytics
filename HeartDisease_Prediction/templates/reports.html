@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Reports</h2>
+<p>Download model reports and review prediction summaries.</p>
+<div class="metric-row">
+  <div class="metric-card"><span>Best Model</span><strong>{{ results.best_model if results else 'N/A' }}</strong></div>
+  <div class="metric-card"><span>Best Accuracy</span><strong>{{ (results.best_accuracy * 100) | round(2) if results else 'N/A' }}%</strong></div>
+</div>
+{% endblock %}

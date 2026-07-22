@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Heart Disease Prediction</h2>
+<p>Enter patient details and estimate the likelihood of heart disease.</p>
+<form method="post" class="grid-form">
+  <label>Age<input type="number" name="age" min="18" max="100" value="{{ form_values.age }}" required></label>
+  <label>Gender
+    <select name="sex">
+      <option value="Female" {% if form_values.sex == 'Female' %}selected{% endif %}>Female</option>
+      <option value="Male" {% if form_values.sex == 'Male' %}selected{% endif %}>Male</option>
+    </select>
+  </label>
+  <label>Chest Pain
+    <select name="chest_pain">
+      <option {% if form_values.chest_pain == 'Typical Angina' %}selected{% endif %}>Typical Angina</option>
+      <option {% if form_values.chest_pain == 'Atypical Angina' %}selected{% endif %}>Atypical Angina</option>
+      <option {% if form_values.chest_pain == 'Non-Anginal Pain' %}selected{% endif %}>Non-Anginal Pain</option>
+      <option {% if form_values.chest_pain == 'Asymptomatic' %}selected{% endif %}>Asymptomatic</option>
+    </select>
+  </label>
+  <label>Resting BP<input type="number" name="resting_bp" min="80" max="220" value="{{ form_values.resting_bp }}" required></label>
+  <label>Cholesterol<input type="number" name="cholesterol" min="100" max="600" value="{{ form_values.cholesterol }}" required></label>
+  <label>Fasting Blood Sugar
+    <select name="fasting_bs">
+      <option {% if form_values.fasting_bs == 'No' %}selected{% endif %}>No</option>
+      <option {% if form_values.fasting_bs == 'Yes' %}selected{% endif %}>Yes</option>
+    </select>
+  </label>
+  <label>Rest ECG
+    <select name="rest_ecg">
+      <option {% if form_values.rest_ecg == 'Normal' %}selected{% endif %}>Normal</option>
+      <option {% if form_values.rest_ecg == 'ST-T Wave Abnormality' %}selected{% endif %}>ST-T Wave Abnormality</option>
+      <option {% if form_values.rest_ecg == 'Left Ventricular Hypertrophy' %}selected{% endif %}>Left Ventricular Hypertrophy</option>
+    </select>
+  </label>
+  <label>Maximum Heart Rate<input type="number" name="max_hr" min="60" max="220" value="{{ form_values.max_hr }}" required></label>
+  <label>Exercise Angina
+    <select name="exercise_angina">
+      <option {% if form_values.exercise_angina == 'No' %}selected{% endif %}>No</option>
+      <option {% if form_values.exercise_angina == 'Yes' %}selected{% endif %}>Yes</option>
+    </select>
+  </label>
+  <label>Old Peak<input type="number" step="0.1" name="oldpeak" min="0" max="8" value="{{ form_values.oldpeak }}" required></label>
+  <label>ST Slope
+    <select name="st_slope">
+      <option {% if form_values.st_slope == 'Upsloping' %}selected{% endif %}>Upsloping</option>
+      <option {% if form_values.st_slope == 'Flat' %}selected{% endif %}>Flat</option>
+      <option {% if form_values.st_slope == 'Downsloping' %}selected{% endif %}>Downsloping</option>
+    </select>
+  </label>
+  <div class="form-actions">
+    <button class="button primary" type="submit">Predict</button>
+    <button class="button secondary" type="submit" formaction="{{ url_for('download_report') }}">Download Report</button>
+  </div>
+</form>
+
+{% if result %}
+  <section class="result-card">
+    <h3>Prediction</h3>
+    <div class="stat-row">
+      <div><span>Probability</span><strong>{{ result.probability }}%</strong></div>
+      <div><span>Risk Level</span><strong>{{ result.risk_level }}</strong></div>
+    </div>
+    <div class="prediction-banner {% if result.prediction == 1 %}danger{% else %}success{% endif %}">
+      {% if result.prediction == 1 %}
+        <strong>Heart Disease Likely</strong>
+      {% else %}
+        <strong>No Heart Disease Detected</strong>
+      {% endif %}
+    </div>
+    <h4>Recommendations</h4>
+    <ul>
+      {% for item in result.recommendations %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
+{% endblock %}

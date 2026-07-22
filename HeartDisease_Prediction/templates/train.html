@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Model Training</h2>
+<p>Train multiple classifiers and save the best model automatically.</p>
+<form method="post" class="button-form">
+  <button class="button primary" type="submit">Train Model</button>
+</form>
+
+{% if trained %}
+  <section class="result-card">
+    <h3>Training Results</h3>
+    <div class="table-wrapper">
+      {% if results and results.results %}
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Accuracy</th>
+              <th>Precision</th>
+              <th>Recall</th>
+              <th>F1 Score</th>
+              <th>ROC AUC</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in results.results %}
+              <tr>
+                <td>{{ row.model }}</td>
+                <td>{{ (row.accuracy * 100) | round(2) }}%</td>
+                <td>{{ (row.precision * 100) | round(2) }}%</td>
+                <td>{{ (row.recall * 100) | round(2) }}%</td>
+                <td>{{ (row.f1_score * 100) | round(2) }}%</td>
+                <td>{{ (row.roc_auc * 100) | round(2) }}%</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% elif results %}
+        <p>No training results available yet.</p>
+      {% endif %}
+    </div>
+  </section>
+{% else %}
+  <p class="muted">No training results available yet. Click the button above to start model training.</p>
+{% endif %}
+{% endblock %}

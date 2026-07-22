@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Exploratory Data Analysis</h2>
+<form method="get" class="form-inline">
+  <label for="column">Choose a feature</label>
+  <select name="column" id="column" onchange="this.form.submit()">
+    {% for option in feature_options %}
+      <option value="{{ option }}" {% if option == selected_column %}selected{% endif %}>{{ option }}</option>
+    {% endfor %}
+  </select>
+</form>
+
+<div class="chart-grid">
+  <div class="chart-card">{{ boxplot_html | safe }}</div>
+  <div class="chart-card">{{ histogram_html | safe }}</div>
+  <div class="chart-card">{{ chest_pain_html | safe }}</div>
+  <div class="chart-card">{{ cholesterol_html | safe }}</div>
+  <div class="chart-card">{{ max_hr_html | safe }}</div>
+  <div class="chart-card">{{ correlation_html | safe }}</div>
+</div>
+{% endblock %}

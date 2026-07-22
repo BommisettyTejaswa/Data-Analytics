@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Model Performance</h2>
+{% if not results %}
+  <p class="muted">Train the model first to view performance metrics.</p>
+{% else %}
+  <div class="metric-row">
+    <div class="metric-card"><span>Best Model</span><strong>{{ results.best_model }}</strong></div>
+    <div class="metric-card"><span>Accuracy</span><strong>{{ (results.best_accuracy * 100) | round(2) }}%</strong></div>
+  </div>
+  <section class="result-card">
+    <h3>Training Summary</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Accuracy</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1 Score</th>
+            <th>ROC AUC</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in results.results %}
+            <tr>
+              <td>{{ row.model }}</td>
+              <td>{{ (row.accuracy * 100) | round(2) }}%</td>
+              <td>{{ (row.precision * 100) | round(2) }}%</td>
+              <td>{{ (row.recall * 100) | round(2) }}%</td>
+              <td>{{ (row.f1_score * 100) | round(2) }}%</td>
+              <td>{{ (row.roc_auc * 100) | round(2) }}%</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {% if results.feature_importance %}
+    <section class="result-card">
+      <h3>Top Feature Importance</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Feature</th><th>Importance</th></tr>
+          </thead>
+          <tbody>
+            {% for feature in results.feature_importance %}
+              <tr>
+                <td>{{ feature.feature }}</td>
+                <td>{{ (feature.importance * 100) | round(2) }}%</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  {% endif %}
+{% endif %}
+{% endblock %}
